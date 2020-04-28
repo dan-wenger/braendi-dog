@@ -1,6 +1,5 @@
 #### **NOTE**: this project was started from the svelte template, and modified from that point on. This document is the default README that came with the template. Some instructions may not be valid anymore.
 
-
 ---
 
 *Looking for a shareable component template? Go here --> [sveltejs/component-template](https://github.com/sveltejs/component-template)*
@@ -58,7 +57,7 @@ By default, sirv will only respond to requests that match files in `public`. Thi
 
 If you're building a single-page app (SPA) with multiple routes, sirv needs to be able to respond to requests for *any* path. You can make it so by editing the `"start"` command in package.json:
 
-```js
+```json
 "start": "sirv public --single"
 ```
 
