@@ -5,6 +5,7 @@
   let peerjsReady = false;
   let peerCreated = false;
 
+  // ANCHOR Setup
   onMount(() => {
     console.log("mounted");
     mounted = true;
@@ -49,6 +50,10 @@
   function initGame() {
     console.log("user wants to start a game");
   }
+
+  function joinGame() {
+    console.log("user wants to join a game");
+  }
 </script>
 
 <svelte:head>
@@ -62,5 +67,5 @@
 <h4>my id: {me.id}</h4>
 {#if game.stage == 'joining'}
   <button on:click={initGame}>Start new Game</button>
-  <button>Join Game</button>
+  <button on:click={joinGame}>Join Game</button>
 {/if}

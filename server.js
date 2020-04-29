@@ -1,27 +1,21 @@
 const express = require("express");
 const ExpressPeerServer = require("peer").ExpressPeerServer;
+//-> note that es6 imports are not possible in server-side code
 
-//////////////////
-// Server Setup //
-//////////////////
+// ANCHOR Server Setup
 console.log("setting up server");
+const app = express(); // tells node to use express for the server logic
 
-// tells node to use express for the server logic
-const app = express();
-
-// Static files
+// ANCHOR Static files
 app.use(express.static("dist"));
-
-//  process.env.PORT is used when the application is deployed to the server,
-//  because the server probably uses a different port than set here.
-//  During development on localhost, process.env.PORT doesn't exist,
-//  therefore it uses "backup" port specified
 const port = process.env.PORT || 4000;
+//-> process.env.PORT only exists on the server, that's how both
+//   dev and production ports can be specified
 const server = app.listen(port, () => {
   console.log(`listening for requests on port ${port}`);
 });
 
-// PeerJS
+// ANCHOR PeerJS "Subserver"
 const customGenerationFunction = () =>
   (Math.random().toString(36) + "0000000000000000000").substr(2, 16);
 

@@ -7,7 +7,9 @@
     "parcel": "parcel watch src/index.html",
     "server": "nodemon server.js",
     "start": "concurrently \"npm run parcel\" \"npm run server\"",
-    "build": "parcel build src/index.html"
+    "build": "parcel build src/index.html",
+    "test": "jest --watch",
+    "report": "jest --coverage"
   },
   "author": "",
   "license": "ISC",
@@ -17,12 +19,65 @@
     "peer": "^0.5.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "@testing-library/svelte": "^3.0.0",
+    "babel-jest": "^25.5.1",
+    "jest": "^25.5.0",
     "nodemon": "^2.0.3",
     "parcel-bundler": "^1.12.4",
     "parcel-plugin-svelte": "^4.0.6",
     "prettier": "^1.19.1",
     "prettier-plugin-svelte": "^0.7.0",
-    "svelte": "^3.0.0"
+    "svelte": "^3.0.0",
+    "svelte-jest": "^0.3.1"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "current"
+          },
+          "modules": false
+        }
+      ]
+    ],
+    "env": {
+      "test": {
+        "plugins": [
+          [
+            "@babel/plugin-transform-modules-commonjs",
+            {
+              "noInterop": true
+            }
+          ]
+        ]
+      }
+    }
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.js$": "babel-jest",
+      "^.+\\.svelte$": "svelte-jest"
+    },
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "svelte"
+    ],
+    "collectCoverageFrom": [
+      "**/*.{js,jsx,svelte}",
+      "!**/node_modules/**",
+      "!**/dist/**",
+      "!**/z_*/**",
+      "!**/src/main.js"
+    ],
+    "coverageReporters": [
+      "text"
+    ]
   },
   "browserslist": [
     "last 1 chrome versions"
