@@ -1,13 +1,17 @@
 import Scriptloader from "./helpers/script-loader";
 import * as Me from "./components/Me.js";
 
-export async function setupPeer() {
+export async function loadPeerjs() {
   const loader = new Scriptloader({
     src: "cdn.jsdelivr.net/npm/peerjs@0.3.20/dist/peer.min.js",
     global: "Segment",
   });
-  console.log("retreiving peerjs from CDN...");
   const peerjs = await loader.load();
+}
+
+export async function setupPeer() {
+  console.log("retreiving peerjs from CDN...");
+  const peerJs = await loadPeerjs();
   console.log("CDN loaded");
 
   console.log("setting up peer...");

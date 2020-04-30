@@ -1,7 +1,7 @@
 <script>
   // this is the top most Svelte file. Every svelte component used in this app should be imported here (also works indirectly, if another component referenced here imports it).
   import { onMount } from "svelte";
-  import { setupPeer, peerId } from "./peer-communication.js";
+  import { setupPeer } from "./peer-communication.js";
   import * as Game from "./components/Game.js";
   import * as Me from "./components/Me.js";
 
