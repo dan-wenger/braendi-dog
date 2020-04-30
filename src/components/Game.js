@@ -1,7 +1,8 @@
 import { writable, derived } from "svelte/store";
 
 export const possibleStages = [
-  "idle",
+  "init",
+  "ready",
   "joining",
   "preparation",
   "play",
@@ -13,4 +14,8 @@ export const getStage = (index) => {
 };
 
 export const currStageId = writable(0);
-export const getCurrStage = derived(currStageId, ($id) => possibleStages[$id]);
+export const currStage = derived(currStageId, ($id) => possibleStages[$id]);
+
+export function gotoNextStage() {
+  currStageId.update((n) => n + 1);
+}

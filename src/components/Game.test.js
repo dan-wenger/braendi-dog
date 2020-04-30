@@ -1,16 +1,11 @@
-import {
-  possibleStages,
-  getStage,
-  currStageId,
-  getCurrStage,
-} from "./game-store";
+import { possibleStages, getStage, currStageId, currStage } from "./Game";
 
 let $currStageId = null;
 const unsubscribeCurrStageId = currStageId.subscribe(
   (id) => ($currStageId = id)
 );
 let $getCurrStage = null;
-const unsubscribeGetCurrStage = getCurrStage.subscribe(
+const unsubscribeGetCurrStage = currStage.subscribe(
   (str) => ($getCurrStage = str)
 );
 
@@ -33,8 +28,8 @@ describe("currStageId store", () => {
 
 describe("getStage function", () => {
   const i = 1;
-  it("should return 'joining' with id 1", () => {
-    expect(getStage(i)).toEqual("joining");
+  it("should return 'ready' with id 1", () => {
+    expect(getStage(i)).toEqual("ready");
   });
   test("with index i it should equal possibleStages(i)", () => {
     expect(getStage(i)).toEqual(possibleStages[i]);
@@ -42,8 +37,8 @@ describe("getStage function", () => {
 });
 
 describe("currStageId and getCurrStage", () => {
-  test("$getCurrStage should return 'play' when currStageId changed to 3", () => {
-    currStageId.set(3);
+  test("$getCurrStage should return 'play' when currStageId changed to 4", () => {
+    currStageId.set(4);
     expect($getCurrStage).toEqual("play");
   });
 });
