@@ -14,7 +14,6 @@ let $getCurrStage = null;
 const unsubscribeGetCurrStage = currStage.subscribe(
   (str) => ($getCurrStage = str)
 );
-
 //-> here i mocked ("simulated") the behaviour in a svelte file.
 //   it should be possible to call the store with the prefix $ and it should
 //   return it's state
