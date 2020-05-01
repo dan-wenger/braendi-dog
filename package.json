@@ -16,13 +16,15 @@
   "dependencies": {
     "concurrently": "^5.2.0",
     "express": "^4.17.1",
-    "peer": "^0.5.2"
+    "peer": "^0.5.2",
+    "peerjs": "^1.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@babel/plugin-transform-modules-commonjs": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
     "@testing-library/svelte": "^3.0.0",
+    "@types/jest": "^25.2.1",
     "babel-jest": "^25.5.1",
     "jest": "^25.5.0",
     "nodemon": "^2.0.3",

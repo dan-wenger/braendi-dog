@@ -8,7 +8,7 @@ const app = express(); // tells node to use express for the server logic
 
 // ANCHOR Static files
 app.use(express.static("dist"));
-const port = process.env.PORT || 4000;
+const port = Number(process.env.PORT) || 4000;
 //-> process.env.PORT only exists on the server, that's how both
 //   dev and production ports can be specified
 const server = app.listen(port, () => {
@@ -20,6 +20,7 @@ const customGenerationFunction = () =>
   (Math.random().toString(36) + "0000000000000000000").substr(2, 16);
 
 const peerServer = ExpressPeerServer(server, {
+  // @ts-ignore
   debug: true,
   secure: false,
   port: port,
@@ -28,5 +29,6 @@ const peerServer = ExpressPeerServer(server, {
 app.use("/peerjs", peerServer);
 
 peerServer.on("connection", function(id) {
+  // @ts-ignore
   console.log(id.id);
 });

@@ -1,33 +1,25 @@
-import Scriptloader from "./helpers/script-loader";
-import * as Me from "./components/Me.js";
+import Peer from "peerjs";
 
-export async function loadPeerjs() {
-  const loader = new Scriptloader({
-    src: "cdn.jsdelivr.net/npm/peerjs@0.3.20/dist/peer.min.js",
-    global: "Segment",
-  });
-  const peerjs = await loader.load();
-}
+// takes a single object as a parameter (whith defaults set here),
+// which contains the options for the Peer class
+export function setupPeer({
+  path = "/peerjs",
+  host = location.hostname,
+  port = Number(location.port || (location.protocol === "https:" ? 443 : 80)),
+  debug = 3,
+} = {}) {
+  console.log("setupPeer: started...");
+  //...this object is then passed on as a whole via arguments[0]
+  const peer = new Peer(arguments[0]);
 
-export async function setupPeer() {
-  console.log("retreiving peerjs from CDN...");
-  const peerJs = await loadPeerjs();
-  console.log("CDN loaded");
+  return new Promise((resolve, reject) => {
+    peer.on("open", (newId) => {
+      console.log("setupPeer: success");
+      resolve(newId);
+    });
 
-  console.log("setting up peer...");
-  const peer = new Peer({
-    host: location.hostname,
-    port: location.port || (location.protocol === "https:" ? 443 : 80),
-    path: "/peerjs",
-    debug: 3,
-  });
-
-  peer.on("open", (newId) => {
-    console.log(`received individual id: ${newId}`);
-    Me.id.set(newId);
-  });
-
-  peer.on("error", (err) => {
-    throw new Error(err);
+    peer.on("error", (err) => {
+      throw new Error(`setupPeer ${err}`);
+    });
   });
 }

@@ -1,12 +1,8 @@
-import { setupPeer, loadPeerjs } from "./peer-communication";
-
-describe("loadPeerjs function", () => {
-  it.skip("should load the peerjs library from CDN", () => {});
-});
+import { setupPeer } from "./peer-communication";
 
 describe("setupPeer function", () => {
-  it.todo("should call the loadPeerjs function");
-  it.todo("should connect to the signal server in /peerjs");
+  it.todo("should by default connect to the signal server in /peerjs");
+  it.todo("should accept a different route");
   it.todo("should recieve an id from the signal server");
   it.todo("should assign the id to the Me store");
 });

@@ -8,8 +8,11 @@
   // ANCHOR Peer Setup
   onMount(() => {
     console.log("mounted");
-    setupPeer();
-    Game.gotoNextStage();
+    setupPeer().then(newId => {
+      console.log(`peer created with id ${newId}`);
+      Me.id.set(newId);
+      Game.gotoNextStage();
+    });
   });
 
   function initGame() {
@@ -28,6 +31,9 @@
   const myId = Me.id;
   const iAmTheHost = Me.beingHost;
 </script>
+
+<!-- {@debug $myId} -->
+<!-- {@debug $gameStage} -->
 
 {#if $gameStage == 'ready'}
   <button on:click={initGame}>Start new Game</button>
