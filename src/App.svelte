@@ -4,6 +4,8 @@
   import { setupPeer } from "./peer-communication.js";
   import * as Game from "./components/Game.js";
   import * as Me from "./components/Me.js";
+  import Setup from "./components/Setup.svelte";
+  import Board from "./components/Board.svelte";
 
   // ANCHOR Peer Setup
   onMount(() => {
@@ -15,31 +17,29 @@
     });
   });
 
-  function initGame() {
-    console.log("user wants to start a game");
-    Me.beingHost.set(true);
-    Game.gotoNextStage();
-  }
-
-  function joinGame() {
-    console.log("user wants to join a game");
-    Game.gotoNextStage();
-  }
-
   // ANCHOR Variables
-  const gameStage = Game.currStage;
-  const myId = Me.id;
-  const iAmTheHost = Me.beingHost;
+  const gameStage = Game.currStageId;
 </script>
+
+<style>
+  #wrapper {
+    display: grid;
+    grid-template-columns: 1;
+    grid-template-rows: 1;
+    height: 100%;
+    align-items: center;
+    justify-items: center;
+  }
+</style>
 
 <!-- {@debug $myId} -->
 <!-- {@debug $gameStage} -->
 
-{#if $gameStage == 'ready'}
-  <button on:click={initGame}>Start new Game</button>
-  <button on:click={joinGame}>Join Game</button>
-{:else if ($gameStage = 'joining')}
-  {#if $iAmTheHost}
-    Copy this code and send it to the others!
-  {:else}Enter the code you received:{/if}
-{/if}
+<div id="wrapper">
+  {#if $gameStage < 3}
+    <Setup />
+  {:else if $gameStage === 4}
+    <Board />
+  {/if}
+
+</div>

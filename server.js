@@ -15,6 +15,7 @@ const port = Number(process.env.PORT) || 4000;
 //   dev and production ports can be specified
 const server = app.listen(port, () => {
   console.log(`listening for requests on port ${port}`);
+  console.log(`server ready at http://localhost:${port}/`);
 });
 
 // ANCHOR PeerJS "Subserver"

@@ -23,17 +23,23 @@
     "@babel/core": "^7.9.0",
     "@babel/plugin-transform-modules-commonjs": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
+    "@fullhuman/postcss-purgecss": "^2.1.2",
     "@testing-library/svelte": "^3.0.0",
     "@types/jest": "^25.2.1",
+    "autoprefixer": "^9.7.6",
     "babel-jest": "^25.5.1",
     "jest": "^25.5.0",
+    "node-sass": "^4.14.0",
     "nodemon": "^2.0.3",
     "parcel-bundler": "^1.12.4",
     "parcel-plugin-svelte": "^4.0.6",
     "prettier": "^1.19.1",
     "prettier-plugin-svelte": "^0.7.0",
+    "sass": "^1.26.5",
     "svelte": "^3.0.0",
-    "svelte-jest": "^0.3.1"
+    "svelte-jest": "^0.3.1",
+    "svelte-preprocess": "^3.7.4",
+    "tailwindcss": "^1.4.2"
   },
   "babel": {
     "presets": [
