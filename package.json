@@ -74,8 +74,7 @@
       "**/*.{js,jsx,svelte}",
       "!**/node_modules/**",
       "!**/dist/**",
-      "!**/z_*/**",
-      "!**/src/main.js"
+      "!**/z_*/**"
     ],
     "coverageReporters": [
       "text"

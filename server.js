@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 const express = require("express");
 const ExpressPeerServer = require("peer").ExpressPeerServer;
 //-> note that es6 imports are not possible in server-side code

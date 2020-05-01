@@ -1,4 +1,10 @@
-import { possibleStages, getStage, currStageId, currStage } from "./Game";
+import {
+  possibleStages,
+  getStage,
+  currStageId,
+  currStage,
+  gotoNextStage,
+} from "./Game";
 
 let $currStageId = null;
 const unsubscribeCurrStageId = currStageId.subscribe(
@@ -40,6 +46,14 @@ describe("currStageId and getCurrStage", () => {
   test("$getCurrStage should return 'play' when currStageId changed to 4", () => {
     currStageId.set(4);
     expect($getCurrStage).toEqual("play");
+  });
+});
+
+describe("gotoNextStage function", () => {
+  it("should go from stage 2 to stage 3", () => {
+    currStageId.set(2);
+    gotoNextStage();
+    expect($currStageId).toEqual(3);
   });
 });
 
