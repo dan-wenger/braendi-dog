@@ -1,3 +1,3 @@
-A WIP... thing for learning javascript app development with node. My goal is to implement a swiss board game called [Brändi Dog](https://www.braendi-dog.de) as a multiplayer game. 
+A wip/fun project for learning javascript app development with node. My goal is to implement a swiss board game called [Brändi Dog](https://www.braendi-dog.de) and make it work over WebRTC. I want as much as possible to be done client-side. 
 
-For the backend I'm using express.js and peerjs. For the frontend, I'm excited to give [Svelte](https://svelte.dev) a try.
+The express backend with implemented [peerjs-server](https://github.com/peers/peerjs-server) is responsible for serving the static files and for doing the signaling. For the frontend I'm excited to give [Svelte](https://svelte.dev) a try! Going good so far

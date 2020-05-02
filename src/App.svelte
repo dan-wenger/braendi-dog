@@ -23,9 +23,7 @@
 
 <style>
   #wrapper {
-    display: grid;
-    grid-template-columns: 1;
-    grid-template-rows: 1;
+    position: relative;
     height: 100%;
     align-items: center;
     justify-items: center;
@@ -38,8 +36,7 @@
 <div id="wrapper">
   {#if $gameStage < 3}
     <Setup />
-  {:else if $gameStage === 4}
-    <Board />
+    <!-- {:else if $gameStage === 4} -->
   {/if}
-
+  <Board />
 </div>
