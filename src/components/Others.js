@@ -18,6 +18,8 @@ export const data = writable({});
 
 export const host = writable(null);
 
+export const hostId = writable(null);
+
 //ANCHOR Derived Stores
 export const ids = derived(data, (obj) => extract(obj, "id"));
 export const names = derived(data, (obj) => extract(obj, "name"));

@@ -1,4 +1,5 @@
 import Peer from "peerjs";
+import * as Others from "./components/Others";
 
 // takes a single object as a parameter (whith defaults set here),
 // which contains the options for the Peer class
@@ -23,3 +24,15 @@ export function setupPeer({
     });
   });
 }
+
+/*
+peer.on("connection", (connection) => {
+  console.log("connection received by another peer");
+});
+
+export function connectToPeer(id) {
+  const connection = peer.connect(id);
+}
+
+export function broadcastPeers(data) {}
+*/
