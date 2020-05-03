@@ -1,4 +1,4 @@
-import { data, host, colors, addPlayer, addPlayerName } from "./Others";
+import { others, colors, addPlayer, addPlayerName } from "./Players";
 import { writable } from "svelte/store";
 
 // Add test data to the "data" object
@@ -19,35 +19,23 @@ let fakeData = {
     color: "yellow",
   },
 };
-data.set(fakeData);
+others.set(fakeData);
 
 // Mock $-variables
-let $data = null;
-const unsubscribeData = data.subscribe((obj) => ($data = obj));
-let $host = null;
-const unsubscribeHost = host.subscribe((str) => ($host = str));
+let $others = null;
+const unsubscribeData = others.subscribe((obj) => ($others = obj));
 let $colors = null;
 const unsubscribeColors = colors.subscribe((arr) => ($colors = arr));
 //-> here i mocked ("simulated") the behaviour in a svelte file.
 //   it should be possible to call the store with the prefix $ and it should
 //   return it's state
 
-describe("data object", () => {
-  it("should return Uschi when called data[0][name]", () => {
-    expect($data[0]["name"]).toEqual("Uschi");
+describe("others object", () => {
+  it("should return Uschi when called others[0][name]", () => {
+    expect($others[0]["name"]).toEqual("Uschi");
   });
-  it("should return undefined when called data[6]", () => {
-    expect($data[6]).toBeUndefined();
-  });
-});
-
-describe("host", () => {
-  it("should return null when called by default", () => {
-    expect($host).toBeNull();
-  });
-  it("should return index 4 after set to 4", () => {
-    host.set(4);
-    expect($host).toEqual(4);
+  it("should return undefined when called others[6]", () => {
+    expect($others[6]).toBeUndefined();
   });
 });
 

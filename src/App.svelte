@@ -6,6 +6,9 @@
   import * as Me from "./components/Me.js";
   import Setup from "./components/Setup.svelte";
   import Board from "./components/Board.svelte";
+  import Statusbar from "./components/Statusbar.svelte";
+
+  import devSetStartVariables from "./helpers/devSetStartVariables";
 
   // ANCHOR Peer Setup
   onMount(() => {
@@ -13,8 +16,10 @@
     setupPeer().then(newId => {
       console.log(`peer created with id ${newId}`);
       Me.id.set(newId);
-      Game.gotoNextStage();
     });
+
+    //NOTE only during development:
+    devSetStartVariables();
   });
 
   // ANCHOR Variables
@@ -39,4 +44,5 @@
     <!-- {:else if $gameStage === 4} -->
   {/if}
   <Board />
+  <Statusbar />
 </div>

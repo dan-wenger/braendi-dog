@@ -1,5 +1,5 @@
 import Peer from "peerjs";
-import * as Others from "./components/Others";
+import * as Players from "./components/Players";
 
 // takes a single object as a parameter (whith defaults set here),
 // which contains the options for the Peer class

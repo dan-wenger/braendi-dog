@@ -33,8 +33,8 @@ describe("currStageId store", () => {
 
 describe("getStage function", () => {
   const i = 1;
-  it("should return 'ready' with id 1", () => {
-    expect(getStage(i)).toEqual("ready");
+  it("should return 'idSetup' with id 1", () => {
+    expect(getStage(i)).toEqual("idSetup");
   });
   test("with index i it should equal possibleStages(i)", () => {
     expect(getStage(i)).toEqual(possibleStages[i]);
@@ -42,8 +42,8 @@ describe("getStage function", () => {
 });
 
 describe("currStageId and getCurrStage", () => {
-  test("$getCurrStage should return 'play' when currStageId changed to 4", () => {
-    currStageId.set(4);
+  test("$getCurrStage should return 'play' when currStageId changed to 6", () => {
+    currStageId.set(6);
     expect($getCurrStage).toEqual("play");
   });
 });
