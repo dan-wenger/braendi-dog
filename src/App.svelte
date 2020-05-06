@@ -5,7 +5,7 @@
   import * as Game from "./components/Game.js";
   import * as Me from "./components/Me.js";
   import Setup from "./components/Setup.svelte";
-  import Board from "./components/Board.svelte";
+  import Board from "./components/Board/Board.svelte";
   import Statusbar from "./components/Statusbar.svelte";
 
   import devSetStartVariables from "./helpers/devSetStartVariables";
@@ -19,7 +19,10 @@
     });
 
     //NOTE only during development:
-    devSetStartVariables();
+    devSetStartVariables({
+      stage: 3,
+      name: "Dan"
+    });
   });
 
   // ANCHOR Variables

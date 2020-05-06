@@ -12,9 +12,6 @@ export const possibleStages = [
   "finish-play",
   "review",
 ];
-export const getStage = (index) => {
-  return possibleStages[index];
-};
 
 export const currStageId = writable(0);
 export const currStage = derived(currStageId, ($id) => possibleStages[$id]);

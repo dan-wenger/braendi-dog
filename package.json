@@ -41,6 +41,11 @@
     "svelte-preprocess": "^3.7.4",
     "tailwindcss": "^1.4.2"
   },
+  "svelte": {
+    "compiler": {
+      "css": false
+    }
+  },
   "babel": {
     "presets": [
       [
@@ -80,10 +85,13 @@
       "**/*.{js,jsx,svelte}",
       "!**/node_modules/**",
       "!**/dist/**",
-      "!**/z_*/**"
+      "!**/z_*/**",
+      "!**/coverage/**",
+      "!**.config.js"
     ],
     "coverageReporters": [
-      "text"
+      "text",
+      "html"
     ]
   },
   "browserslist": [

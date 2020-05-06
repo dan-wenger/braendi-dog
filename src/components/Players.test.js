@@ -1,6 +1,8 @@
 import { others, colors, addPlayer, addPlayerName } from "./Players";
 import { writable } from "svelte/store";
 
+import { mockStore } from "../helpers/mock-store-helper";
+
 // Add test data to the "data" object
 let fakeData = {
   0: {
@@ -21,32 +23,27 @@ let fakeData = {
 };
 others.set(fakeData);
 
-// Mock $-variables
-let $others = null;
-const unsubscribeData = others.subscribe((obj) => ($others = obj));
-let $colors = null;
-const unsubscribeColors = colors.subscribe((arr) => ($colors = arr));
-//-> here i mocked ("simulated") the behaviour in a svelte file.
-//   it should be possible to call the store with the prefix $ and it should
-//   return it's state
+// Mock $-variables, call as functions!
+let $others = mockStore(others);
+let $colors = mockStore(colors);
 
 describe("others object", () => {
   it("should return Uschi when called others[0][name]", () => {
-    expect($others[0]["name"]).toEqual("Uschi");
+    expect($others()[0]["name"]).toEqual("Uschi");
   });
   it("should return undefined when called others[6]", () => {
-    expect($others[6]).toBeUndefined();
+    expect($others()[6]).toBeUndefined();
   });
 });
 
 describe("colors (example for derived store)", () => {
   it("should return an array", () => {
-    expect(Array.isArray($colors)).toBe(true);
+    expect(Array.isArray($colors())).toBeTruthy();
   });
   it("should return 'blue' when called colors[1]", () => {
-    expect($colors[1]).toEqual("blue");
+    expect($colors()[1]).toEqual("blue");
   });
   it("should return undefined when called colors[22]", () => {
-    expect($colors[22]).toBeUndefined();
+    expect($colors()[22]).toBeUndefined();
   });
 });
