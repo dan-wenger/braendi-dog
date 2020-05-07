@@ -21,15 +21,10 @@
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
-    "@babel/plugin-transform-modules-commonjs": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
-    "@fullhuman/postcss-purgecss": "^2.1.2",
     "@testing-library/svelte": "^3.0.0",
-    "@types/jest": "^25.2.1",
-    "autoprefixer": "^9.7.6",
     "babel-jest": "^25.5.1",
     "jest": "^25.5.0",
-    "node-sass": "^4.14.0",
     "nodemon": "^2.0.3",
     "parcel-bundler": "^1.12.4",
     "parcel-plugin-svelte": "^4.0.6",
@@ -38,61 +33,7 @@
     "sass": "^1.26.5",
     "svelte": "^3.0.0",
     "svelte-jest": "^0.3.1",
-    "svelte-preprocess": "^3.7.4",
-    "tailwindcss": "^1.4.2"
-  },
-  "svelte": {
-    "compiler": {
-      "css": false
-    }
-  },
-  "babel": {
-    "presets": [
-      [
-        "@babel/preset-env",
-        {
-          "targets": {
-            "node": "current"
-          },
-          "modules": false
-        }
-      ]
-    ],
-    "env": {
-      "test": {
-        "plugins": [
-          [
-            "@babel/plugin-transform-modules-commonjs",
-            {
-              "noInterop": true
-            }
-          ]
-        ]
-      }
-    }
-  },
-  "jest": {
-    "transform": {
-      "^.+\\.js$": "babel-jest",
-      "^.+\\.svelte$": "svelte-jest"
-    },
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "svelte"
-    ],
-    "collectCoverageFrom": [
-      "**/*.{js,jsx,svelte}",
-      "!**/node_modules/**",
-      "!**/dist/**",
-      "!**/z_*/**",
-      "!**/coverage/**",
-      "!**.config.js"
-    ],
-    "coverageReporters": [
-      "text",
-      "html"
-    ]
+    "svelte-preprocess": "^3.7.4"
   },
   "browserslist": [
     "last 1 chrome versions"

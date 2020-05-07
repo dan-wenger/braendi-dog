@@ -1,0 +1,53 @@
+@import "./variables.scss";
+
+body {
+  position: relative;
+  color: r(--c100);
+  margin: 0px;
+  padding: 0.5rem;
+  font-family: "Montserrat", "Heltica", sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+input[type="text"] {
+  padding: $spacing;
+  background-color: $c090;
+  color: inherit;
+  border: 0;
+  outline: none;
+  @extend .rounded;
+}
+
+button {
+  min-width: 4rem;
+  color: inherit;
+  border: 3px solid $accent;
+  background-color: inherit;
+  outline: none;
+  font-weight: 700;
+  padding: inherit;
+
+  @extend .rounded;
+
+  &:hor {
+    background-color: $c090;
+    border-color: $accent-darker;
+  }
+}
+
+.strong {
+  border: 0;
+  color: $c100;
+  background-color: $accent;
+
+  &:hor {
+    background-color: $accent-darker;
+  }
+}
+
+.rounded {
+  border-radius: 0.5rem;
+}

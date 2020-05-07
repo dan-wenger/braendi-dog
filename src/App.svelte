@@ -21,7 +21,8 @@
     //NOTE only during development:
     devSetStartVariables({
       stage: 3,
-      name: "Dan"
+      name: "Dan",
+      host: false
     });
   });
 

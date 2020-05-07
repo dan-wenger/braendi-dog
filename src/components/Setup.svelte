@@ -61,6 +61,8 @@
 </script>
 
 <style lang="scss">
+  @use "src/styles/variables" as v;
+
   #wrapper {
     position: fixed;
     display: flex;
@@ -76,92 +78,92 @@
   #container {
     position: relative;
     display: flex;
-    justify-content: center;
-    align-items: stretch;
-    flex-wrap: wrap;
     z-index: 2;
+    background-color: v.$c100;
+    padding: 1rem;
   }
 
   #background {
     position: fixed;
+    background-color: v.$c010;
+    opacity: 50%;
     width: 100%;
     height: 100%;
   }
 
-  // #closeButton {
-  //   border: 0;
-  //   position: absolute;
-  //   top: 0;
-  //   right: 0;
-  //   padding: 0.2rem 0.4rem;
-  // }
+  .space-left {
+    margin-left: v.$spacing;
+  }
 
   .above-container {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
     position: absolute;
     bottom: 100%;
     left: 0;
-    color: white;
+    color: v.$c100;
   }
 
   .below-container {
+    color: v.$c090;
     position: absolute;
     top: 100%;
     left: 0;
+  }
+
+  .hidden {
+    opacity: 0;
   }
 </style>
 
 <!-- {@debug $gameStage} -->
 <div id="wrapper">
-  <div id="container" class="bg-white rounded p-4">
+  <div id="container" class="rounded">
     {#if $gameStage === 0}
-      <button class="btn" on:click={initGame}>Start new Game</button>
-      <button class="btn ml-4" on:click={joinGame}>Join Game</button>
+      <button on:click={initGame}>Start new Game</button>
+      <button on:click={joinGame} class="space-left">Join Game</button>
     {:else if $gameStage === 1}
       {#if $iAmTheHost}
-        <label class="label above-container" for="hostIdOut">
+        <label class="above-container" for="hostIdOut">
           Share this code with the others:
         </label>
         <input
-          class="box"
           type="text"
           name="hostIdOut"
           value={$myId}
           readonly
           on:focus={selectAll} />
         <button
-          class="btn next-to-input"
           id="copy"
+          class="space-left"
           type="button"
           on:click={copyIdToClipboard}>
           Copy
         </button>
-        <button class="btn strong w-20 ml-4" on:click={gotoNextGameStage}>
+        <button class="strong space-left" on:click={gotoNextGameStage}>
           <i class="fas fa-angle-right fa-lg" />
         </button>
-        <p
-          class={copiedMessage ? 'text-gray-500 my-1 below-container' : 'text-transparent my-1 below-container'}>
-          Copied
-        </p>
+        <p class="below-container" class:hidden={!copiedMessage}>Copied</p>
       {:else}
-        <label class="label above-container" for="hostIdIn">
+        <label class="above-container" for="hostIdIn">
           Enter the code you received:
         </label>
-        <input type="text" class="box" name="hostIdIn" bind:value={$hostId} />
-        <button class="btn strong w-20 ml-4" on:click={connectToHost}>
+        <input type="text" name="hostIdIn" bind:value={$hostId} />
+        <button class="strong space-left" on:click={connectToHost}>
           <i class="fas fa-angle-right fa-lg" />
         </button>
-        <p
-          class={idMissingWarning ? 'text-gray-500 my-1 below-container' : 'text-transparent my-1 below-container'}>
+        <p class="below-container" class:hidden={!idMissingWarning}>
           Please enter the Id first
         </p>
       {/if}
     {:else if $gameStage === 2}
-      <label class="label above-container" for="nameIn">Enter your name:</label>
-      <input type="text" class="box" name="nameIn" bind:value={$myName} />
-      <button class="btn strong ml-4" on:click={gotoNextGameStage}>
+      <label class="above-container" for="nameIn">Enter your name:</label>
+      <input type="text" name="nameIn" bind:value={$myName} />
+      <button class="strong space-left" on:click={gotoNextGameStage}>
         Enter
       </button>
     {/if}
   </div>
-  <div id="background" class="bg-black opacity-50" />
+  <div id="background" />
 </div>
