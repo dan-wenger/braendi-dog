@@ -6,10 +6,11 @@
   import {
     beingHost as iAmTheHost,
     id as myId,
-    name as myName,
+    username as myName,
     setMeAsHost
   } from "./Me.js";
   import { hostId } from "./Players";
+  import { connectToPeer } from "../peer-communication.js";
 
   //ANCHOR Functions
   function initGame() {
@@ -55,7 +56,7 @@
       popUpDelay(false).then(() => (idMissingWarning = false));
     } else {
       gotoNextGameStage();
-      console.log(`You entered with host id "${$hostId}"`);
+      connectToPeer($hostId);
     }
   }
 </script>

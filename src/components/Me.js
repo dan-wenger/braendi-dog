@@ -1,22 +1,23 @@
 import { writable, derived, get } from "svelte/store";
 import { hostId } from "./Players";
 
-import { mockStore } from "../helpers/mock-store-helper";
-
 //ANCHOR Stores
+export const peer = null;
 export const id = writable(0);
-export const name = writable("");
+export const username = writable("");
 export const color = writable("");
 
-export const meAsObj = derived([id, name, color], ([$id, $name, $color]) => {
-  return {
-    "0": {
-      id: $id,
-      name: $name,
+export const meAsObj = derived(
+  [id, username, color],
+  ([$id, $username, $color]) => {
+    let obj = {};
+    obj[$id] = {
+      username: $username,
       color: $color,
-    },
-  };
-});
+    };
+    return obj;
+  }
+);
 
 export const beingHost = writable(false);
 

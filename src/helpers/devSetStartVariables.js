@@ -4,14 +4,14 @@ import * as Game from "../components/Game";
 
 export default function devSetStartVariables({
   stage = 0,
-  name = "",
+  username = "",
   host = false,
 } = {}) {
   if (stage !== 0) {
     Game.currStageId.set(stage);
   }
-  if (name !== "") {
-    Me.name.set(name);
+  if (username !== "") {
+    Me.username.set(username);
   }
   if (host !== false) {
     Me.setMeAsHost();

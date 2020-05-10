@@ -13,15 +13,19 @@
   // ANCHOR Peer Setup
   onMount(() => {
     console.log("mounted");
-    setupPeer().then(newId => {
-      console.log(`peer created with id ${newId}`);
-      Me.id.set(newId);
-    });
+    setupPeer()
+      .then(newId => {
+        console.log(`peer created with id ${newId}`);
+        Me.id.set(newId);
+      })
+      .catch(err => {
+        throw new Error(`setupPeer ${err}`);
+      });
 
     //NOTE only during development:
     devSetStartVariables({
-      stage: 3,
-      name: "Dan",
+      stage: 0,
+      username: "Dan",
       host: false
     });
   });

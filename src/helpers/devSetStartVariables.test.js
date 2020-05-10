@@ -6,21 +6,21 @@ import * as Game from "../components/Game";
 import { mockStore } from "./mock-store-helper";
 
 const $stageId = mockStore(Game.currStageId);
-const $myName = mockStore(Me.name);
+const $myName = mockStore(Me.username);
 
 describe("devSetStartVariables", () => {
   it("should by default do nothing", () => {
-    const before = { id: $stageId(), name: $myName() };
+    const before = { id: $stageId(), username: $myName() };
     devSetStartVariables();
-    const after = { id: $stageId(), name: $myName() };
+    const after = { id: $stageId(), username: $myName() };
     expect(before).toEqual(after);
   });
   it("should be able to change the game state from 0 to three", () => {
     devSetStartVariables({ stage: 3 });
     expect($stageId()).toEqual(3);
   });
-  it("should be able to set Me.name", () => {
-    devSetStartVariables({ name: "Leo" });
+  it("should be able to set Me.username", () => {
+    devSetStartVariables({ username: "Leo" });
     expect($myName()).toEqual("Leo");
   });
 });
