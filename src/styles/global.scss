@@ -32,7 +32,7 @@ button {
 
   @extend .rounded;
 
-  &:hor {
+  &:hover {
     background-color: $c090;
     border-color: $accent-darker;
   }
@@ -43,7 +43,7 @@ button {
   color: $c100;
   background-color: $accent;
 
-  &:hor {
+  &:hover {
     background-color: $accent-darker;
   }
 }
