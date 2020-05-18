@@ -51,14 +51,9 @@ describe("setupNewPlayer function", () => {
       setupNewPlayer();
     }).toThrow();
   });
-  test("the id should be passed as an object", () => {
-    expect(() => {
-      setupNewPlayer("someid");
-    }).toThrow();
-  });
   it('adds an entry to the "others" store', () => {
     const before = Object.assign({}, get(others));
-    setupNewPlayer({ id: "someotherid" });
+    setupNewPlayer("someotherid");
     const after = Object.assign({}, get(others));
     expect(Object.keys(after).length).toBeGreaterThan(
       Object.keys(before).length
@@ -66,13 +61,13 @@ describe("setupNewPlayer function", () => {
   });
   it("leaves the object empty, if only passed an id", () => {
     others.set({});
-    setupNewPlayer({ id: "randomId" });
+    setupNewPlayer("randomId");
     const playerObj = get(others);
     expect(playerObj).toEqual({ randomId: {} });
   });
   it("adds username and color attributes inside the object (with prop of id)", () => {
     others.set({});
-    setupNewPlayer({ id: "moreRandomId", username: "Vale", color: "red" });
+    setupNewPlayer("moreRandomId", { username: "Vale", color: "red" });
     const playerObj = get(others);
     expect(playerObj).toEqual({
       moreRandomId: { username: "Vale", color: "red" },

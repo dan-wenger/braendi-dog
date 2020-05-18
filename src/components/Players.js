@@ -41,13 +41,13 @@ function extract(obj, prop) {
 
 //ANCHOR Mutating Data
 export function setupNewPlayer(id, rest = {}) {
-  if (id !== null) {
+  if (id !== undefined) {
     others.update((obj) => {
       obj[id] = rest;
       return obj;
     });
   } else {
-    throw new Error("setupNewPlayer: you need to pass at least an id");
+    throw new Error("setupNewPlayer: you need to pass an id");
   }
 }
 
