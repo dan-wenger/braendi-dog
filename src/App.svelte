@@ -35,7 +35,7 @@
 </script>
 
 <style>
-  #wrapper {
+  #app {
     position: relative;
     height: 100%;
     align-items: center;
@@ -43,13 +43,9 @@
   }
 </style>
 
-<!-- {@debug $myId} -->
-<!-- {@debug $gameStage} -->
-
-<div id="wrapper">
+<div id="app">
   {#if $gameStage < 3}
     <Setup />
-    <!-- {:else if $gameStage === 4} -->
   {/if}
   <Board />
   <Statusbar />
