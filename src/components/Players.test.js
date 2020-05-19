@@ -1,4 +1,5 @@
-import { others, colors, setupNewPlayer, updatePlayer } from "./Players";
+import { others, all, colors, setupNewPlayer, updatePlayer } from "./Players";
+import * as Me from "./Me";
 import { get } from "svelte/store";
 
 import { mockStore } from "../helpers/mock-store-helper";
@@ -22,14 +23,30 @@ others.set(fakeData);
 
 // Mock $-variables, call as functions!b
 let $others = mockStore(others);
+let $all = mockStore(all);
 let $colors = mockStore(colors);
 
-describe("others object", () => {
+describe("others store", () => {
   it("should return Uschi when called others[0]['3yup5fa61rd00000']", () => {
     expect($others()["3yup5fa61rd00000"]["username"]).toEqual("Uschi");
   });
   it("should return undefined when called others[wrongId]", () => {
     expect($others()["wrongId"]).toBeUndefined();
+  });
+});
+
+describe("all derived store", () => {
+  it("should return a combined version of Players.others and Me.meAsObj", () => {
+    Me.id.set("thatsmyid");
+    Me.username.set("thatsmyname");
+    Me.color.set("thatsmycolor");
+    expect($all()).toEqual({
+      thatsmyid: {
+        username: "thatsmyname",
+        color: "thatsmycolor",
+      },
+      ...fakeData,
+    });
   });
 });
 
