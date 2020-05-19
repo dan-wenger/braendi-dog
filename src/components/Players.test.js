@@ -1,5 +1,5 @@
-import { others, colors, setupNewPlayer } from "./Players";
-import { writable, get } from "svelte/store";
+import { others, colors, setupNewPlayer, updatePlayer } from "./Players";
+import { get } from "svelte/store";
 
 import { mockStore } from "../helpers/mock-store-helper";
 
@@ -59,11 +59,11 @@ describe("setupNewPlayer function", () => {
       Object.keys(before).length
     );
   });
-  it("leaves the object empty, if only passed an id", () => {
+  it("still sets up default props, if only passed an id", () => {
     others.set({});
     setupNewPlayer("randomId");
     const playerObj = get(others);
-    expect(playerObj).toEqual({ randomId: {} });
+    expect(playerObj).toEqual({ randomId: { username: "", color: "" } });
   });
   it("adds username and color attributes inside the object (with prop of id)", () => {
     others.set({});
@@ -72,5 +72,36 @@ describe("setupNewPlayer function", () => {
     expect(playerObj).toEqual({
       moreRandomId: { username: "Vale", color: "red" },
     });
+  });
+});
+
+describe("updatePlayer function", () => {
+  it("takes three arguments and changes the others store accordingly", () => {
+    setupNewPlayer("testId");
+    expect(() => {
+      updatePlayer("testId", "username", "Meret");
+    }).not.toThrow();
+  });
+  it("should throw if an argument is missing", () => {
+    expect(() => {
+      updatePlayer("onlyOneArg");
+    }).toThrowError("arguments");
+    expect(() => {
+      updatePlayer("first", "second", "third", "invalidFourth");
+    }).toThrow("arguments");
+  });
+  it("should throw if the id cannot be found", () => {
+    others.set({});
+    setupNewPlayer("anId");
+    expect(() => {
+      updatePlayer("anotherId", "color", "whatever");
+    }).toThrowError("id");
+  });
+  it("should throw if the passed in an invalid value", () => {
+    others.set({});
+    setupNewPlayer("testMe", { username: "Barbara" });
+    expect(() => {
+      updatePlayer("testMe", "username", 0);
+    }).toThrowError("value");
   });
 });
