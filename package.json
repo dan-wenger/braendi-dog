@@ -22,9 +22,10 @@
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
+    "@testing-library/jest-dom": "^5.7.0",
     "@testing-library/svelte": "^3.0.0",
     "babel-jest": "^25.5.1",
-    "jest": "^25.5.0",
+    "jest": "^25.5.4",
     "nodemon": "^2.0.3",
     "parcel-bundler": "^1.12.4",
     "parcel-plugin-svelte": "^4.0.6",
