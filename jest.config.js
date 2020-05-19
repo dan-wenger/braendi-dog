@@ -13,4 +13,6 @@ module.exports = {
     "!**.config.js",
   ],
   coverageReporters: ["text", "html"],
+  verbose: true,
+  setupFilesAfterEnv: ["@testing-library/jest-dom/extend-expect"],
 };
