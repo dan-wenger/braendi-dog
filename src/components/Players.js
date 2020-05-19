@@ -40,7 +40,7 @@ function extract(obj, prop) {
 }
 
 //ANCHOR Mutating Data
-export function setupNewPlayer(id, rest = {}) {
+export function setupNewPlayer(id, rest = { username: "", color: "" }) {
   if (id !== undefined) {
     others.update((obj) => {
       obj[id] = rest;
@@ -51,8 +51,31 @@ export function setupNewPlayer(id, rest = {}) {
   }
 }
 
-export function updatePlayer(index, prop, value) {
+/**
+ * updates any value contained in the "others" store
+ * takes three arguments:
+ * @param {string} id - the player to target (his id)
+ * @param {string} prop - the data to be changed. for example "username"
+ * @param {string} value - the actual value to be set. for example "Uschi"
+ */
+export function updatePlayer(id, prop, value) {
+  //checks if passed three arguments
+  if (arguments.length !== 3) {
+    throw new Error("you need to pass exactly three arguments");
+  }
+
   others.update((obj) => {
-    obj[index][prop] = value;
+    // checks if player exists
+    if (!obj[id]) {
+      throw new Error("player could not be found. please enter a valid id");
+    }
+    // checks value type
+    if (typeof value !== typeof obj[id][prop]) {
+      throw new Error("the value you passed differs from the one already set");
+    }
+    // everything fine, updating
+    else {
+      obj[id][prop] = value;
+    }
   });
 }
